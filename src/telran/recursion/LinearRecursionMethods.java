@@ -35,10 +35,32 @@ public static int pow1(int a, int b) {
  * only arithmetic operations +, -
  * additional functions if any with the same limitations
  */
+
 public static int pow(int a, int b) {
-	//TODO
-	return -1;
+	int res = 1;
+	if (b < 0) {
+		throw new IllegalArgumentException();
+	}
+	
+	if (b > 0) {
+		res = product(a, pow(a, b - 1));
+	}
+	return res;
 }
+
+public static int product(int a, int b) {
+
+	int res = 0;
+	if (b<0) {b=Math.abs(b); a=0-a;}
+	if (b != 0) {
+		res =  a + product(a, b - 1);
+	}
+	
+
+	return res;
+}
+
+
 public static void displayArray(int [] array) {
 	displayArray(0, array, false);
 }
@@ -90,10 +112,18 @@ private static void reverse(int left, int right, int[] array) {
  * no additional functions allowed
  * no static fields
  */
-public static int square(int x) {
-	//TODO
-	return -1;
-}
+
+    public static int square(int x) {
+    	int res = 0; 
+    	int moduleX = x<0?0-x:x;
+    	if(moduleX>0) {
+    		res =  square(moduleX - 1) + (moduleX + moduleX - 1) ;//solution found in internet and based on algebraic dependence  
+    	}
+
+    return res; 
+    }
+
+
 /**
  * 
  * @param str - string
@@ -104,8 +134,31 @@ public static int square(int x) {
  * length()
  */
 public static boolean isSubstring(String str, String substr) {
+	boolean res = false;
+	if (str.length() >= substr.length()) {//exit from recursion
+		if (firstLettersEquals(str, substr)) {res = true;}
+		else {
+			res = isSubstring(str.substring(1), substr); //cutting first letter from string
+		};
+	}
 	
-	//TODO
-	return false;
+	
+	return res;
+}
+
+private static boolean firstLettersEquals(String str, String substr) {
+	boolean res = false;
+	
+	if(substr.length() == 0) {
+	res = true;
+	}
+	
+	else if (str.charAt(0) == substr.charAt(0)) {
+		res = firstLettersEquals(str.substring(1), substr.substring(1));
+	}
+	
+	
+	return res;
+	
 }
 }

@@ -28,7 +28,7 @@ class LinearRecursionTest {
 	}
 	@Test
 	void powTest() {
-		assertEquals(100, pow(10, 2));
+		assertEquals(125, pow(5, 3));
 		assertEquals(100, pow(-10, 2));
 		assertEquals(1000, pow(10, 3));
 		assertEquals(-1000, pow(-10, 3));
@@ -72,6 +72,18 @@ class LinearRecursionTest {
 		assertFalse(isSubstring(str, "blal"));
 		assertFalse(isSubstring(str, "bladds"));
 		assertFalse(isSubstring(str, "daba"));
+		
+	}
+	
+	@Test
+	void productTest() {
+		
+		assertEquals(100, product(10, 10));
+		assertEquals(800, product(20,40));
+		assertEquals(0,   product(20,0));
+		assertEquals(20 , product(20,1));
+		assertEquals(60 , product(-20,-3));
+		
 		
 	}
 
